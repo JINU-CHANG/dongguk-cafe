@@ -1,4 +1,4 @@
-package topPanel;
+package panel.topPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,12 +21,12 @@ public class KioskTopPanel extends JPanel {
     }
 
     public void setInnerPanel() {
-        innerPanel = new KioskInnerPanel();
+        innerPanel = new InnerPanel();
         this.add(innerPanel);
     }
 
     public void setLogoPanel() {
-        logoPanel = new KioskLogoPanel();
+        logoPanel = new LogoPanel();
         innerPanel.add(logoPanel);
     }
 }

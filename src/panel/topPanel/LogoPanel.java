@@ -1,16 +1,16 @@
-package topPanel;
+package panel.topPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class KioskLogoPanel extends JPanel {
+public class LogoPanel extends JPanel {
     private static final Color LOGO_COLOR = new Color(35, 24, 22);
     private static final String LOGO_TOP = "A TWOSOME PLACE";
     private static final Font LOGO_TOP_FONT = new Font("Serif", Font.BOLD, 30);
     private static final String LOGO_BOTTOM = "COFFEE & DESSERT";
     private static final Font LOGO_BOTTOM_FONT = new Font("Serif", Font.PLAIN, 25);
 
-    public KioskLogoPanel() {
+    public LogoPanel() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(LOGO_COLOR);
 
