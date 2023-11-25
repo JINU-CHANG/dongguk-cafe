@@ -1,3 +1,5 @@
+import topPanel.KioskTopPanel;
+
 import javax.swing.*;
 import java.awt.*;
 public class KioskApp extends JFrame {
@@ -10,7 +12,6 @@ public class KioskApp extends JFrame {
 
         //투썸 로고 보여주는 패널 생성
         KioskTopPanel topPanel = new KioskTopPanel();
-        topPanel.setInnerPanel();
 
         //프레임에 패널 추가
         Container c = getContentPane();
