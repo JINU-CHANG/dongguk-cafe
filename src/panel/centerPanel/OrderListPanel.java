@@ -9,12 +9,20 @@ public class OrderListPanel extends JPanel {
     private static final LayoutManager ORDER_LIST_EACH_LAYOUT = new FlowLayout(FlowLayout.CENTER);
     private static final Dimension ORDER_LIST_EACH_SIZE = new Dimension(350, 50);
     private static final Font ORDER_LIST_FONT = new Font("Serif", Font.BOLD, 15);
+    private OrderResultPanel orderResultPanel;
+
     public OrderListPanel() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(Color.WHITE);
+
+        orderResultPanel = new OrderResultPanel();
     }
 
-    public void addOrderMenu(Menu menu) {
+    public OrderResultPanel getOrderResultPanel() {
+        return orderResultPanel;
+    }
+
+    public int addOrderMenu(Menu menu, int totalPrice) {
         //주문 패널 생성
         JPanel orderPanel = new JPanel(ORDER_LIST_EACH_LAYOUT);
         orderPanel.setBackground(Color.WHITE);
@@ -37,9 +45,14 @@ public class OrderListPanel extends JPanel {
         orderPanel.add(priceLabel);
         this.add(orderPanel);
 
+        totalPrice += menu.getPrice();
+
+        orderResultPanel.setPricePanel(totalPrice);
         //화면에 다시 그리기
         this.revalidate();
         this.repaint();
+
+        return totalPrice;
     }
 
     public boolean isMenuAlreadyOrdered(Menu menu) {

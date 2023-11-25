@@ -12,6 +12,7 @@ public class OrderPanel extends JPanel {
 
     private OrderTopPanel orderTopPanel;
     private OrderListPanel orderListPanel;
+    private OrderResultPanel orderResultPanel;
     public OrderPanel() {
         this.setLayout(ORDER_LAYOUT);
         this.setBackground(ORDER_COLOR);
@@ -19,12 +20,14 @@ public class OrderPanel extends JPanel {
 
         orderTopPanel = new OrderTopPanel();
         orderListPanel = new OrderListPanel();
+        orderResultPanel = orderListPanel.getOrderResultPanel();
         this.add(orderTopPanel, BorderLayout.NORTH);
         this.add(orderListPanel, BorderLayout.CENTER);
+        this.add(orderResultPanel, BorderLayout.SOUTH);
     }
 
-    public void addOrderMenu(Menu menu) {
-        orderListPanel.addOrderMenu(menu);
+    public int addOrderMenu(Menu menu, int totalPrice) {
+        return orderListPanel.addOrderMenu(menu, totalPrice);
     }
 
     public boolean checkOrderDuplication(Menu menu) {

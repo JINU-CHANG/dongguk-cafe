@@ -17,6 +17,7 @@ public class MenuPanel extends JPanel {
     private static final Dimension BUTTON_SIZE = new Dimension(100, 100);
     private static final Font MENU_FONT = new Font("Serif", Font.BOLD, 15);
     private OrderPanel orderPanel;
+    private int totalPrice = 0;
 
     public MenuPanel() {
         this.setLayout(MENU_LAYOUT);
@@ -83,7 +84,7 @@ public class MenuPanel extends JPanel {
             if (orderPanel.checkOrderDuplication(menu)) {
                 return;
             }
-            orderPanel.addOrderMenu(menu);
+            totalPrice = orderPanel.addOrderMenu(menu, totalPrice);
         }
 
     }
