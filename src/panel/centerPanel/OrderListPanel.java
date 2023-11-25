@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class OrderListPanel extends JPanel {
+    private static final LayoutManager ORDER_LIST_EACH_LAYOUT = new FlowLayout(FlowLayout.CENTER);
+    private static final Dimension ORDER_LIST_EACH_SIZE = new Dimension(350, 50);
+    private static final Font ORDER_LIST_FONT = new Font("Serif", Font.BOLD, 15);
     public OrderListPanel() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(Color.WHITE);
@@ -13,9 +16,9 @@ public class OrderListPanel extends JPanel {
 
     public void addOrderMenu(Menu menu) {
         //주문 패널 생성
-        JPanel orderPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel orderPanel = new JPanel(ORDER_LIST_EACH_LAYOUT);
         orderPanel.setBackground(Color.WHITE);
-        orderPanel.setMaximumSize(new Dimension(350, 50));
+        orderPanel.setMaximumSize(ORDER_LIST_EACH_SIZE);
 
         //메뉴 이미지 설정
         ImageIcon menuImage = new ImageIcon(menu.getImgUrl());
@@ -26,14 +29,15 @@ public class OrderListPanel extends JPanel {
         JLabel priceLabel = new JLabel(String.valueOf(menu.getPrice()));
 
         //메뉴 이름 및 가격 폰트 설정
-        nameLabel.setFont(new Font("Serif", Font.BOLD, 15));
-        priceLabel.setFont(new Font("Serif", Font.BOLD, 15));
+        nameLabel.setFont(ORDER_LIST_FONT);
+        priceLabel.setFont(ORDER_LIST_FONT);
 
         orderPanel.add(menuImageLabel);
         orderPanel.add(nameLabel);
         orderPanel.add(priceLabel);
         this.add(orderPanel);
 
+        //화면에 다시 그리기
         this.revalidate();
         this.repaint();
     }
