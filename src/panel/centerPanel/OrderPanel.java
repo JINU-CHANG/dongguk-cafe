@@ -1,5 +1,7 @@
 package panel.centerPanel;
 
+import menu.Menu;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -19,5 +21,13 @@ public class OrderPanel extends JPanel {
         orderListPanel = new OrderListPanel();
         this.add(orderTopPanel, BorderLayout.NORTH);
         this.add(orderListPanel, BorderLayout.CENTER);
+    }
+
+    public void addOrderMenu(Menu menu) {
+        orderListPanel.addOrderMenu(menu);
+    }
+
+    public boolean checkOrderDuplication(Menu menu) {
+        return orderListPanel.isMenuAlreadyOrdered(menu);
     }
 }

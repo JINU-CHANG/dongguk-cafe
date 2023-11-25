@@ -11,7 +11,7 @@ public class KioskCenterPanel extends JPanel {
         this.setLayout(CENTER_LAYOUT);
 
         menuPanel = new MenuPanel();
-        orderPanel = new OrderPanel();
+        orderPanel = menuPanel.getOrderPanel();
         this.add(menuPanel, BorderLayout.WEST);
         this.add(orderPanel, BorderLayout.EAST);
     }

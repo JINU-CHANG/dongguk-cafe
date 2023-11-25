@@ -16,11 +16,13 @@ public class MenuPanel extends JPanel {
     private static final Dimension SIZE = new Dimension(600, 500);
     private static final Dimension BUTTON_SIZE = new Dimension(100, 100);
     private static final Font MENU_FONT = new Font("Serif", Font.BOLD, 15);
+    private OrderPanel orderPanel;
 
     public MenuPanel() {
         this.setLayout(MENU_LAYOUT);
         this.setPreferredSize(SIZE);
-        
+
+        orderPanel = new OrderPanel();
         setButtons();
     }
         
@@ -77,8 +79,16 @@ public class MenuPanel extends JPanel {
         }
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            // 중복 주문 확인
+            if (orderPanel.checkOrderDuplication(menu)) {
+                return;
+            }
+            orderPanel.addOrderMenu(menu);
         }
 
+    }
+
+    public OrderPanel getOrderPanel() {
+        return orderPanel;
     }
 }
