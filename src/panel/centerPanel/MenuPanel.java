@@ -2,6 +2,7 @@ package panel.centerPanel;
 import menu.Menu;
 
 import config.MenuConfig;
+import panel.ImageSizeConvertor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -49,7 +50,7 @@ public class MenuPanel extends JPanel {
             buttonInnerPanel.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
             buttonInnerPanel.setBackground(Color.WHITE);
 
-            ImageIcon menuImage = adjustSize(new ImageIcon(menu.getImgUrl()), 80, 80);
+            ImageIcon menuImage = ImageSizeConvertor.adjustSize(new ImageIcon(menu.getImgUrl()), 80, 80);
             JLabel imageLabel = new JLabel(menuImage, SwingConstants.CENTER);
             JLabel nameLabel = new JLabel(menu.getName(), SwingConstants.CENTER);
             JLabel priceLabel = new JLabel(String.valueOf(menu.getPrice()), SwingConstants.CENTER);
@@ -79,13 +80,5 @@ public class MenuPanel extends JPanel {
 
         }
 
-    }
-
-    private ImageIcon adjustSize(ImageIcon icon, int width, int height) {
-        // ImageIcon 객체에서 Image 추출
-        Image img = icon.getImage();
-        // 추출된 Image의 크기를 조절하여 새로운 Image 객체 생성
-        Image scaledImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        return new ImageIcon(scaledImg);
     }
 }
