@@ -1,3 +1,4 @@
+import panel.bottomPanel.KioskBottomPanel;
 import panel.centerPanel.KioskCenterPanel;
 import panel.topPanel.KioskTopPanel;
 
@@ -14,12 +15,14 @@ public class KioskApp extends JFrame {
         //키오스크 패널 생성
         KioskTopPanel topPanel = new KioskTopPanel();
         KioskCenterPanel centerPanel = new KioskCenterPanel();
+        KioskBottomPanel bottomPanel = new KioskBottomPanel();
 
         //프레임에 패널 추가
         Container c = getContentPane();
         c.setLayout(new BorderLayout());
         c.add(topPanel, BorderLayout.NORTH);
         c.add(centerPanel, BorderLayout.CENTER);
+        c.add(bottomPanel, BorderLayout.SOUTH);
 
         // 프레임을 보이도록 설정
         setVisible(true);
