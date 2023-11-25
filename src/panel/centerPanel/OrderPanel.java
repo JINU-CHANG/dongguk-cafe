@@ -8,7 +8,7 @@ import java.awt.*;
 public class OrderPanel extends JPanel {
     private static final LayoutManager ORDER_LAYOUT = new BorderLayout();
     private static final Color ORDER_COLOR = Color.WHITE;
-    private static final Dimension ORDER_SIZE = new Dimension(350, 500);
+    private static final Dimension ORDER_SIZE = new Dimension(350, 450);
 
     private OrderTopPanel orderTopPanel;
     private OrderListPanel orderListPanel;

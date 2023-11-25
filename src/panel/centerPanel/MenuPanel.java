@@ -13,7 +13,7 @@ import java.util.List;
 public class MenuPanel extends JPanel {
     private static final int GRID_SIZE = 3;
     private static final LayoutManager MENU_LAYOUT = new GridLayout(GRID_SIZE, GRID_SIZE, 10, 10);
-    private static final Dimension MENU_SIZE = new Dimension(600, 500);
+    private static final Dimension MENU_SIZE = new Dimension(600, 450);
     private static final Dimension BUTTON_SIZE = new Dimension(100, 100);
     private static final Font MENU_FONT = new Font("Serif", Font.BOLD, 15);
     private OrderPanel orderPanel;
