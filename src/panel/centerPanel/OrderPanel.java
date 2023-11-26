@@ -27,8 +27,8 @@ public class OrderPanel extends JPanel {
         this.add(orderResultPanel, BorderLayout.SOUTH);
     }
 
-    public int addOrderMenu(Menu menu, int totalPrice) {
-        return orderListPanel.addOrderMenu(menu, totalPrice);
+    public void addOrderMenu(Menu menu) {
+        orderListPanel.addOrderMenu(menu);
     }
 
     public boolean checkOrderDuplication(Menu menu) {

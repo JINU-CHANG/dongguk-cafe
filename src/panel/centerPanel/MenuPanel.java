@@ -13,13 +13,13 @@ import java.util.List;
 public class MenuPanel extends JPanel {
     private String currentCategory;
     private static final int GRID_SIZE = 3;
+    public static int TOTAL_PRICE = 0;
     private static final LayoutManager MENU_LAYOUT = new GridLayout(GRID_SIZE, GRID_SIZE, 5, 5);
     private static final Dimension MENU_SIZE = new Dimension(600, 450);
     private static final Dimension BUTTON_SIZE = new Dimension(80, 80);
     private static final Font MENU_FONT = new Font("Serif", Font.BOLD, 15);
 
     private final OrderPanel orderPanel;
-    private int totalPrice = 0;
 
     public MenuPanel(OrderPanel orderPanel) {
         this.orderPanel = orderPanel;
@@ -99,7 +99,7 @@ public class MenuPanel extends JPanel {
             if (orderPanel.checkOrderDuplication(menu)) {
                 return;
             }
-            totalPrice = orderPanel.addOrderMenu(menu, totalPrice);
+            orderPanel.addOrderMenu(menu);
         }
 
     }
