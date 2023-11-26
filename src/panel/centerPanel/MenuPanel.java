@@ -11,20 +11,33 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class MenuPanel extends JPanel {
+    private String currentCategory;
     private static final int GRID_SIZE = 3;
-    private static final LayoutManager MENU_LAYOUT = new GridLayout(GRID_SIZE, GRID_SIZE, 10, 10);
+    private static final LayoutManager MENU_LAYOUT = new GridLayout(GRID_SIZE, GRID_SIZE, 5, 5);
     private static final Dimension MENU_SIZE = new Dimension(600, 450);
-    private static final Dimension BUTTON_SIZE = new Dimension(100, 100);
+    private static final Dimension BUTTON_SIZE = new Dimension(80, 80);
     private static final Font MENU_FONT = new Font("Serif", Font.BOLD, 15);
-    private OrderPanel orderPanel;
+
+    private final OrderPanel orderPanel;
     private int totalPrice = 0;
 
-    public MenuPanel() {
+    public MenuPanel(OrderPanel orderPanel) {
+        this.orderPanel = orderPanel;
+
+        //레이아웃 및 크기 지정
         this.setLayout(MENU_LAYOUT);
         this.setPreferredSize(MENU_SIZE);
 
-        orderPanel = new OrderPanel();
+        //초기 카테고리 설정
+        currentCategory = "Coffee";
+
+        //메뉴 버튼 생성
         setButtons();
+    }
+
+    public void setMenuCategory(String category) {
+        currentCategory = category;
+        refreshMenu();
     }
         
     private void setButtons() {
@@ -38,12 +51,14 @@ public class MenuPanel extends JPanel {
                 this.add(buttons[i][j]);
             }
         }
+
+        //버튼 내부에 메뉴 패널 생성
         setMenuInButtons(buttons);
     }
         
     private void setMenuInButtons(JButton[][] buttons) {
-        // 메뉴가 존재할 경우, 버튼에 이미지와 이름, 가격 설정
-        List<Menu> menus = MenuConfig.setMenu();
+        // 현재 카테고리에 해당되는 메뉴들만 필터링해서 가져오기
+        List<Menu> menus = MenuConfig.setMenu().stream().filter(menu -> menu.isTypeOf(currentCategory)).toList();
 
         for (int i = 0; i < menus.size() && i < 9; i++) {
             Menu menu = menus.get(i);
@@ -89,7 +104,20 @@ public class MenuPanel extends JPanel {
 
     }
 
-    public OrderPanel getOrderPanel() {
-        return orderPanel;
+    private void refreshMenu() {
+        removeAll();
+
+        JButton[][] buttons = new JButton[GRID_SIZE][GRID_SIZE];
+        for (int i = 0; i < GRID_SIZE; i++) {
+            for (int j = 0; j < GRID_SIZE; j++) {
+                buttons[i][j] = new JButton();
+                buttons[i][j].setPreferredSize(BUTTON_SIZE);
+                add(buttons[i][j]);
+            }
+        }
+
+        setMenuInButtons(buttons);
+        revalidate();
+        repaint();
     }
 }

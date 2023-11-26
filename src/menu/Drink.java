@@ -11,8 +11,8 @@ public class Drink extends Menu{
     private final List<Size> sizes;
     private final List<Cup> cups;
 
-    public Drink(String name, int price, String imgUrl, List<Temperature> temperatures, List<Size> sizes, List<Cup> cups) {
-        super(name, price, imgUrl);
+    public Drink(Category category, String name, int price, String imgUrl, List<Temperature> temperatures, List<Size> sizes, List<Cup> cups) {
+        super(category, name, price, imgUrl);
         this.temperatures = temperatures;
         this.sizes = sizes;
         this.cups = cups;
