@@ -6,8 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class KioskBottomPanel extends JPanel {
-    private static final LayoutManager BOTTOM_LAYOUT = new BorderLayout();
+    private static final LayoutManager BOTTOM_LAYOUT = new FlowLayout();
     private static final Color BOTTOM_COLOR = Color.WHITE;
+    private static final Font BOTTOM_FONT =  new Font("Serif", Font.BOLD, 15);
     private static final Dimension BOTTOM_SIZE = new Dimension(1000, 50);
 
     public KioskBottomPanel() {
@@ -15,14 +16,21 @@ public class KioskBottomPanel extends JPanel {
         this.setBackground(BOTTOM_COLOR);
         this.setPreferredSize(BOTTOM_SIZE);
 
-        JLabel donggukLogo = createDonggukLogo();
+        JLabel donggukLogo = setDonggukLogo();
+        JLabel donggukText = setDonggukText();
         this.add(donggukLogo);
+        this.add(donggukText);
     }
 
-    private JLabel createDonggukLogo() {
-        ImageIcon donggukImage = new ImageIcon("/Users/jinwoo/Desktop/kiosk-image/donggukLogo2.png");
-        JLabel donggukLabel = new JLabel(ImageSizeConvertor.adjustSize(donggukImage, 150, 60));
+    private JLabel setDonggukLogo() {
+        ImageIcon donggukImage = new ImageIcon("/Users/jinwoo/Desktop/kiosk-image/dongguk-logo.jpeg");
+        return new JLabel(ImageSizeConvertor.adjustSize(donggukImage, 50, 45));
+    }
 
-        return donggukLabel;
+    private JLabel setDonggukText() {
+        JLabel donggukText = new JLabel("DONGGUK");
+        donggukText.setFont(BOTTOM_FONT);
+
+        return donggukText;
     }
 }

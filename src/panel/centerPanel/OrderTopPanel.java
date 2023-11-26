@@ -8,7 +8,7 @@ import java.awt.*;
 public class OrderTopPanel extends JPanel{
     private static final LayoutManager ORDER_TOP_PANEL = new FlowLayout();
     private static final Color ORDER_TOP_COLOR = Color.WHITE;
-    private static final String ORDER_TOP = "Orders";
+    private static final String ORDER_TOP_TEXT = "Orders";
     private static final Font ORDER_TOP_FONT = new Font("Serif", Font.BOLD, 20);
 
     public OrderTopPanel() {
@@ -18,7 +18,7 @@ public class OrderTopPanel extends JPanel{
         ImageIcon cartImage = new ImageIcon("/Users/jinwoo/Desktop/kiosk-image/cart.png");
         JLabel cartImageLabel = new JLabel(ImageSizeConvertor.adjustSize(cartImage, 30, 30));
 
-        JLabel orderLabel = new JLabel(ORDER_TOP);
+        JLabel orderLabel = new JLabel(ORDER_TOP_TEXT);
         orderLabel.setFont(ORDER_TOP_FONT);
 
         this.add(cartImageLabel);
