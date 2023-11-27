@@ -15,13 +15,9 @@ public class OrderTopPanel extends JPanel{
         this.setLayout(ORDER_TOP_PANEL);
         this.setBackground(ORDER_TOP_COLOR);
 
-        ImageIcon cartImage = new ImageIcon("/Users/jinwoo/Desktop/kiosk-image/cart.png");
-        JLabel cartImageLabel = new JLabel(ImageSizeConvertor.adjustSize(cartImage, 30, 30));
-
         JLabel orderLabel = new JLabel(ORDER_TOP_TEXT);
         orderLabel.setFont(ORDER_TOP_FONT);
 
-        this.add(cartImageLabel);
         this.add(orderLabel);
     }
 }

@@ -16,6 +16,7 @@ public class OrderPanel extends JPanel {
 
     public OrderPanel() {
         this.setLayout(ORDER_LAYOUT);
+        this.setBorder(BorderFactory.createEmptyBorder(30, 0, 30, 0));
         this.setBackground(ORDER_COLOR);
         this.setPreferredSize(ORDER_SIZE);
 

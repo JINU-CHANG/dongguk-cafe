@@ -24,7 +24,7 @@ public class KioskApp extends JFrame {
         c.add(centerPanel, BorderLayout.CENTER);
         c.add(bottomPanel, BorderLayout.SOUTH);
 
-        // 프레임을 보이도록 설정
+        //프레임을 보이도록 설정
         setVisible(true);
     }
 
