@@ -20,7 +20,7 @@ public class OrderListPanel extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(Color.WHITE);
 
-        orderResultPanel = new OrderResultPanel();
+        orderResultPanel = new OrderResultPanel(this);
     }
 
     public OrderResultPanel getOrderResultPanel() {
