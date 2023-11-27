@@ -1,13 +1,12 @@
 package panel.centerPanel;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MenuTopPanel extends JPanel {
+public class MenuCategoryPanel extends JPanel {
     private MenuPanel menuPanel;
-    public MenuTopPanel(MenuPanel menuPanel) {
+    public MenuCategoryPanel(MenuPanel menuPanel) {
         this.menuPanel = menuPanel;
 
         JButton[] categoryButtons = new JButton[]{

@@ -15,6 +15,7 @@ public class OrderPanel extends JPanel {
     private OrderResultPanel orderResultPanel;
 
     public OrderPanel() {
+        //레이아웃, 배경색, 크기를 지정한다.
         this.setLayout(ORDER_LAYOUT);
         this.setBorder(BorderFactory.createEmptyBorder(30, 0, 30, 0));
         this.setBackground(ORDER_COLOR);

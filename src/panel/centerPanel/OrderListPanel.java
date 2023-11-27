@@ -1,6 +1,6 @@
 package panel.centerPanel;
 import menu.Menu;
-import panel.ImageSizeConvertor;
+import panel.ImageConvertor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,17 +27,31 @@ public class OrderListPanel extends JPanel {
         return orderResultPanel;
     }
 
+    //주문 메뉴에서 중복된 메뉴가 있는지 확인한다.
+    public boolean isMenuAlreadyOrdered(Menu input) {
+        //OrderPanel들을 순회한다.
+        for (Component component : this.getComponents()) {
+            //OrderPanel 각각의 메뉴이름을 가져온다.
+            String menuName = getMenuName((JPanel) component);
+
+            //메뉴 이름이 input의 메뉴 이름과 같으면 중복된 메뉴이므로 true 반환
+            if (menuName.equals(input.getName())) {
+                return true;
+            }
+        }
+
+        //해당하는 것이 없다면 중복되지 않은 메뉴이므로 false 반환
+        return false;
+    }
+
     public void addOrderMenu(Menu menu) {
         //주문 패널 생성
         JPanel orderPanel = new JPanel(ORDER_LIST_EACH_LAYOUT);
         orderPanel.setBackground(Color.WHITE);
         orderPanel.setMaximumSize(ORDER_LIST_EACH_SIZE);
 
-        //메뉴 이미지 설정
-        ImageIcon menuImage = new ImageIcon(menu.getImgUrl());
-        JLabel menuImageLabel = new JLabel(ImageSizeConvertor.adjustSize(menuImage, 30, 30));
-
-        //메뉴 이름 및 가격 설정
+        //메뉴 이미지, 이름, 가격 라벨 생성
+        JLabel menuImageLabel = new JLabel(ImageConvertor.adjustSize(menu.getImgUrl(), 30, 30));
         JLabel nameLabel = new JLabel(menu.getName());
         JLabel priceLabel = new JLabel(String.valueOf(menu.getPrice()));
 
@@ -50,35 +64,13 @@ public class OrderListPanel extends JPanel {
         JLabel quantityLabel = new JLabel("1"); //디폴트 수량
         JButton minusButton = new JButton("-");
 
+        //버튼 크기 지정
         plusButton.setPreferredSize(BUTTON_SIZE);
         minusButton.setPreferredSize(BUTTON_SIZE);
 
-        //플러스 버튼을 누르면 수량이 증가한다.
-        plusButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int quantity = Integer.parseInt(quantityLabel.getText()) + 1;
-                quantityLabel.setText(String.valueOf(quantity));
-                updateTotalPrice(menu.getPrice());
-            }
-        });
-
-        //마이너스 버튼을 누르면 수량이 감소한다.
-        minusButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int quantity = Integer.parseInt(quantityLabel.getText());
-                if (quantity > 1) {
-                    quantityLabel.setText(String.valueOf(quantity - 1));
-                    updateTotalPrice(-menu.getPrice());
-                }
-
-                if (quantity == 1) {
-                    updateTotalPrice(-menu.getPrice());
-                    removeOrderPanel(orderPanel);
-                }
-            }
-        });
+        //메뉴 수량 증감 버튼에 이벤트 리스너 지정
+        plusButton.addActionListener(new OrderQuantityButtonListener(menu, quantityLabel));
+        minusButton.addActionListener(new OrderQuantityButtonListener(menu, quantityLabel));
 
         orderPanel.add(menuImageLabel);
         orderPanel.add(nameLabel);
@@ -86,12 +78,13 @@ public class OrderListPanel extends JPanel {
         orderPanel.add(plusButton);
         orderPanel.add(quantityLabel);
         orderPanel.add(minusButton);
+
         this.add(orderPanel);
 
         TOTAL_PRICE += menu.getPrice();
         orderResultPanel.setPricePanel(TOTAL_PRICE);
 
-        // 화면에 다시 그리기
+        //화면에 다시 그리기
         this.revalidate();
         this.repaint();
     }
@@ -107,20 +100,46 @@ public class OrderListPanel extends JPanel {
         repaint();
     }
 
-    public boolean isMenuAlreadyOrdered(Menu menu) {
-        // 주문 목록에서 중복된 메뉴를 찾아서 이미 주문되었다면 true 반환
-        for (Component component : this.getComponents()) {
-            if (component instanceof JPanel) {
-                JPanel panel = (JPanel) component;
-                Component[] components = panel.getComponents();
-                if (components.length >= 2 && components[1] instanceof JLabel) {
-                    JLabel nameLabel = (JLabel) components[1];
-                    if (nameLabel.getText().equals(menu.getName())) {
-                        return true;
-                    }
+    private String getMenuName(JPanel jPanel) {
+        Component[] panelComponents = jPanel.getComponents();
+        return ((JLabel) panelComponents[1]).getText(); //index 1은 메뉴 이름을 나타냄.
+    }
+
+    private class OrderQuantityButtonListener implements ActionListener {
+        private Menu menu;
+        private JLabel quantityLabel;
+
+        public OrderQuantityButtonListener(Menu menu, JLabel quantityLabel) {
+            this.menu = menu;
+            this.quantityLabel = quantityLabel;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //현재 수량을 가져온다.
+            int quantity = Integer.parseInt(quantityLabel.getText());
+
+            if (e.getActionCommand().equals("+")) {
+                //수량을 증가시킨다.
+                quantityLabel.setText(String.valueOf(quantity + 1));
+                //수량만큼 가격을 증가시킨다.
+                updateTotalPrice(menu.getPrice());
+            } else if (e.getActionCommand().equals("-")) {
+                if (quantity > 1) {
+                    //수량을 감소시킨다.
+                    quantityLabel.setText(String.valueOf(quantity - 1));
+                    //수량만큼 가격을 감소시킨다.
+                    updateTotalPrice(-menu.getPrice());
+                }
+
+                //수량이 1이면 주문서에서 제거한다.
+                if (quantity == 1) {
+                    updateTotalPrice(-menu.getPrice());
+                    removeOrderPanel((JPanel) quantityLabel.getParent());
                 }
             }
         }
-        return false;
     }
+
+
 }

@@ -6,12 +6,12 @@ import java.awt.*;
 public class OrderResultPanel extends JPanel {
     private static final LayoutManager ORDER_RESULT_LAYOUT = new BorderLayout();
     private static final Color ORDER_RESULT_COLOR = Color.WHITE;
-    private JPanel pricePanel;
 
     public OrderResultPanel() {
         this.setLayout(ORDER_RESULT_LAYOUT);
         this.setBackground(ORDER_RESULT_COLOR);
 
+        //초기 금액은 0원으로 설정
         setPricePanel(0);
     }
 

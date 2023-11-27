@@ -1,6 +1,6 @@
 package panel.bottomPanel;
 
-import panel.ImageSizeConvertor;
+import panel.ImageConvertor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,8 +24,8 @@ public class KioskBottomPanel extends JPanel {
     }
 
     private void setDonggukLogo() {
-        ImageIcon image = new ImageIcon("/Users/jinwoo/Desktop/kiosk-image/dongguk-logo.jpeg");
-        JLabel imageLabel = new JLabel(ImageSizeConvertor.adjustSize(image, 50, 45));
+        ImageIcon image = ImageConvertor.adjustSize("/Users/jinwoo/Desktop/kiosk-image/dongguk-logo.jpeg", 50, 45);
+        JLabel imageLabel = new JLabel(image);
         this.add(imageLabel);
     }
 
