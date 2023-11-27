@@ -12,25 +12,26 @@ public class KioskBottomPanel extends JPanel {
     private static final Dimension BOTTOM_SIZE = new Dimension(1000, 50);
 
     public KioskBottomPanel() {
+        //레이아웃, 배경색, 크기 지정
         this.setLayout(BOTTOM_LAYOUT);
         this.setBackground(BOTTOM_COLOR);
         this.setPreferredSize(BOTTOM_SIZE);
 
-        JLabel donggukLogo = setDonggukLogo();
-        JLabel donggukText = setDonggukText();
-        this.add(donggukLogo);
-        this.add(donggukText);
+        //동국로고 지정
+        setDonggukLogo();
+        //동국글자 지정
+        setDonggukText();
     }
 
-    private JLabel setDonggukLogo() {
-        ImageIcon donggukImage = new ImageIcon("/Users/jinwoo/Desktop/kiosk-image/dongguk-logo.jpeg");
-        return new JLabel(ImageSizeConvertor.adjustSize(donggukImage, 50, 45));
+    private void setDonggukLogo() {
+        ImageIcon image = new ImageIcon("/Users/jinwoo/Desktop/kiosk-image/dongguk-logo.jpeg");
+        JLabel imageLabel = new JLabel(ImageSizeConvertor.adjustSize(image, 50, 45));
+        this.add(imageLabel);
     }
 
-    private JLabel setDonggukText() {
-        JLabel donggukText = new JLabel("DONGGUK");
-        donggukText.setFont(BOTTOM_FONT);
-
-        return donggukText;
+    private void setDonggukText() {
+        JLabel text = new JLabel("DONGGUK");
+        text.setFont(BOTTOM_FONT);
+        this.add(text);
     }
 }
