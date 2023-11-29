@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import static panel.centerPanel.MenuPanel.TOTAL_PRICE;
 
@@ -104,6 +106,31 @@ public class OrderListPanel extends JPanel {
         Component[] panelComponents = jPanel.getComponents();
         return ((JLabel) panelComponents[1]).getText(); //index 1은 메뉴 이름을 나타냄.
     }
+
+    public List<String> getOrderDetails() {
+        List<String> details = new ArrayList<>();
+
+        for (Component component : this.getComponents()) {
+                JPanel orderMenuDetailsPanel = (JPanel) component;
+                Component[] components = orderMenuDetailsPanel.getComponents();
+
+                // Assuming the components array has at least 5 elements
+                Component name = components[1];
+                Component price = components[2];
+                Component quantity = components[4];
+
+                // Extracting text from JLabels (assuming these components are JLabels)
+                String nameText = ((JLabel) name).getText();
+                String priceText = ((JLabel) price).getText();
+                String quantityText = ((JLabel) quantity).getText();
+
+                // Creating a string with the extracted information
+                String detailString = nameText + " " + priceText + " " + quantityText + "개";
+
+                details.add(detailString);
+            }
+        return details;
+        }
 
     private class OrderQuantityButtonListener implements ActionListener {
         private Menu menu;
