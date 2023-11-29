@@ -20,6 +20,7 @@ public class KioskApp extends JFrame {
         //프레임에 패널 추가
         Container c = getContentPane();
         c.setLayout(new BorderLayout(10, 10));
+        //레이아웃 위치 지정
         c.add(topPanel, BorderLayout.NORTH);
         c.add(centerPanel, BorderLayout.CENTER);
         c.add(bottomPanel, BorderLayout.SOUTH);
