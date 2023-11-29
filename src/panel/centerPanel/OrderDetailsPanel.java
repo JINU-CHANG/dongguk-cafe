@@ -1,6 +1,6 @@
 package panel.centerPanel;
 
-import panel.PanelCreator;
+import panel.util.PanelCreator;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,6 @@
 package panel.topPanel;
 
-import panel.PanelCreator;
+import panel.util.PanelCreator;
 
 import javax.swing.*;
 import java.awt.*;

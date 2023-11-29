@@ -1,6 +1,6 @@
 package panel.bottomPanel;
 
-import panel.ImageConvertor;
+import panel.util.ImageConvertor;
 
 import javax.swing.*;
 import java.awt.*;

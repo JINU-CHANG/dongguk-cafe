@@ -9,6 +9,10 @@ public class MenuCategoryPanel extends JPanel {
     public MenuCategoryPanel(MenuPanel menuPanel) {
         this.menuPanel = menuPanel;
 
+        setCategoryButton();
+    }
+
+    private void setCategoryButton() {
         JButton[] categoryButtons = new JButton[]{
                 new JButton("Coffee"),
                 new JButton("Drinks"),
@@ -16,7 +20,7 @@ public class MenuCategoryPanel extends JPanel {
         };
 
         for (JButton button : categoryButtons) {
-            add(button);
+            this.add(button);
             button.addActionListener(new CategoryButtonActionListener(button.getText()));
         }
     }

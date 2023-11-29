@@ -1,4 +1,4 @@
-package panel;
+package panel.util;
 
 import javax.swing.*;
 
