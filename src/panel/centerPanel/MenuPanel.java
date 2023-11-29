@@ -12,7 +12,6 @@ import java.util.List;
 
 public class MenuPanel extends JPanel {
     private static final int GRID_SIZE = 3;
-    public static int TOTAL_PRICE = 0;
     private String currentCategory; //현재 카테고리
     private final OrderPanel orderPanel;
 

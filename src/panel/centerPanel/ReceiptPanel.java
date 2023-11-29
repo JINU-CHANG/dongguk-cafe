@@ -7,8 +7,6 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.util.List;
 
-import static panel.centerPanel.MenuPanel.TOTAL_PRICE;
-
 public class ReceiptPanel extends JPanel {
 
     public ReceiptPanel(List<String> orderDetails) {
@@ -56,7 +54,7 @@ public class ReceiptPanel extends JPanel {
     private void setReceiptBottomPanel() {
         JPanel bottomPanel = PanelCreator.createYAxisAlignedPanel();
 
-        JLabel totalPrice = new JLabel("총 결제 금액 : " + TOTAL_PRICE);
+        JLabel totalPrice = new JLabel("총 결제 금액 : " );
         JLabel at = new JLabel("투썸 플레이스 동국대점");
 
         //가운데 정렬

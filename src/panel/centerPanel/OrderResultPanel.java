@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class OrderResultPanel extends JPanel {
+    private int totalPrice = 0;
     private static final LayoutManager ORDER_RESULT_LAYOUT = new BorderLayout();
     private static final Color ORDER_RESULT_COLOR = Color.WHITE;
 
@@ -15,11 +16,11 @@ public class OrderResultPanel extends JPanel {
         this.setBackground(ORDER_RESULT_COLOR);
 
         //초기 금액은 0원으로 설정
-        setPricePanel(0);
+        setPricePanel();
         setOrderResultButton(orderListPanel);
     }
 
-    public void setPricePanel(int totalPrice) {
+    public void setPricePanel() {
         //가격 패널 및 라벨 생성
         JPanel pricePanel = new JPanel(new FlowLayout());
         pricePanel.setBackground(ORDER_RESULT_COLOR);
@@ -28,6 +29,11 @@ public class OrderResultPanel extends JPanel {
         //가격 패널 및 라벨을 add한다.
         pricePanel.add(priceStringLabel);
         this.add(pricePanel, BorderLayout.NORTH);
+    }
+
+    public void updatePrice(int price) {
+        totalPrice += price;
+        setPricePanel();
     }
 
     private void setOrderResultButton(OrderListPanel orderListPanel) {
