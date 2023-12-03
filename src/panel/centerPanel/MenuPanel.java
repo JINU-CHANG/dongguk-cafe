@@ -30,20 +30,20 @@ public class MenuPanel extends JPanel {
     }
 
     public void setMenuCategory(String category) {
-        currentCategory = category;
-        refreshMenu();
-    }
+        //MenuPanel의 모든 내용을 삭제한다.
+        this.removeAll();
 
-    private void refreshMenu() {
-        //현재 컨테이너의 모든 내용을 지운다.
-        removeAll();
-
-        //빈 버튼을 생성하고, 빈 버튼에 메뉴를 넣는다.
-        setButtons();
+        if (category.equals("etc")) {
+            ETCPanel etcPanel = new ETCPanel(); //ETC 패널을 생성한다.
+            this.add(etcPanel);
+        } else {
+            currentCategory = category; //현재 카테고리를 지정한다.
+            setButtons(); //현재 카테고리의 메뉴버튼들을 생성한다.
+        }
 
         //swing 컴포넌트를 업데이트하고 다시 그리도록 한다.
-        revalidate();
-        repaint();
+        this.revalidate();
+        this.repaint();
     }
         
     private void setButtons() {

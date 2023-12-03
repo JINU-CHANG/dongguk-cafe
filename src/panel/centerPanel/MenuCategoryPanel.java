@@ -16,7 +16,8 @@ public class MenuCategoryPanel extends JPanel {
         JButton[] categoryButtons = new JButton[]{
                 new JButton("Coffee"),
                 new JButton("Drinks"),
-                new JButton("Cake")
+                new JButton("Cake"),
+                new JButton("etc")
         };
 
         for (JButton button : categoryButtons) {
