@@ -9,12 +9,12 @@ import java.util.List;
 
 public class ReceiptPanel extends JPanel {
 
-    public ReceiptPanel(List<String> orderDetails) {
+    public ReceiptPanel(List<String> orderDetails, int totalPrice) {
         this.setLayout(new BorderLayout());
 
         setReceiptTopPanel();
         setReceiptCenterPanel(orderDetails);
-        setReceiptBottomPanel();
+        setReceiptBottomPanel(totalPrice);
     }
 
     private void setReceiptTopPanel() {
@@ -51,17 +51,17 @@ public class ReceiptPanel extends JPanel {
         this.add(centerPanel, BorderLayout.CENTER);
     }
 
-    private void setReceiptBottomPanel() {
+    private void setReceiptBottomPanel(int totalPrice) {
         JPanel bottomPanel = PanelCreator.createYAxisAlignedPanel();
 
-        JLabel totalPrice = new JLabel("총 결제 금액 : " );
+        JLabel totalPriceLabel = new JLabel("총 결제 금액 : " + totalPrice + "원");
         JLabel at = new JLabel("투썸 플레이스 동국대점");
 
         //가운데 정렬
-        totalPrice.setAlignmentX(Component.CENTER_ALIGNMENT);
+        totalPriceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         at.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        bottomPanel.add(totalPrice);
+        bottomPanel.add(totalPriceLabel);
         bottomPanel.add(at);
 
         this.add(bottomPanel, BorderLayout.SOUTH);

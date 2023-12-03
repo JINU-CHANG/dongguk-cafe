@@ -68,7 +68,7 @@ public class OrderResultPanel extends JPanel {
 
             //출력 버튼 눌렀을 때 영수증 출력하는 이벤트 리스너 지정
             JButton additionalButton = new JButton("출력하기");
-            additionalButton.addActionListener(new ReceiptPrintListener(orderDetails, orderDetailsFrame));
+            additionalButton.addActionListener(new ReceiptPrintListener(orderListPanel, orderDetailsFrame));
 
             //레이아웃 위치 지정
             orderDetailsFrame.add(new OrderTopPanel(), BorderLayout.NORTH);
@@ -79,24 +79,31 @@ public class OrderResultPanel extends JPanel {
 
     }
 
+    public void clearTotalPrice() {
+        totalPrice = 0;
+        this.revalidate();
+        this.repaint();
+    }
+
     private class ReceiptPrintListener implements ActionListener {
-        private List<String> orderDetails;
+        private OrderListPanel orderListPanel;
         private JFrame orderDetailsFrame;
 
-        public ReceiptPrintListener(List<String> orderDetails, JFrame orderDetailsFrame) {
-            this.orderDetails = orderDetails;
+        public ReceiptPrintListener(OrderListPanel orderListPanel, JFrame orderDetailsFrame) {
+            this.orderListPanel = orderListPanel;
             this.orderDetailsFrame = orderDetailsFrame;
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            showOutputDialog(orderDetails, orderDetailsFrame);
+            showReceipt(orderListPanel.getOrderDetails(), orderDetailsFrame);
+            clearOrderList(); //영수증 출력 후 주문내역을 초기화한다.
         }
 
-        private void showOutputDialog(List<String> orderDetails, JFrame orderDetailsFrame) {
+        private void showReceipt(List<String> orderDetails, JFrame orderDetailsFrame) {
             JFrame receiptFrame = new JFrame("주문 내역");
 
-            ReceiptPanel receiptPanel = new ReceiptPanel(orderDetails);
+            ReceiptPanel receiptPanel = new ReceiptPanel(orderDetails, totalPrice);
 
             receiptFrame.add(receiptPanel);
             receiptFrame.setSize(300, 200);
@@ -107,5 +114,11 @@ public class OrderResultPanel extends JPanel {
 
             orderDetailsFrame.dispose();
         }
+
+        private void clearOrderList() {
+            orderListPanel.clearOrderList();
+            clearTotalPrice();
+        }
+
     }
 }

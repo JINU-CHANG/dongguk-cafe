@@ -82,6 +82,12 @@ public class OrderListPanel extends JPanel {
         this.repaint();
     }
 
+    public void clearOrderList() {
+        this.removeAll();
+        this.revalidate();
+        this.repaint();
+    }
+
     private void removeOrderPanel(JPanel orderPanel) {
         this.remove(orderPanel);
         revalidate();
