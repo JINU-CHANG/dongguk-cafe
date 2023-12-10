@@ -9,7 +9,7 @@ public class KioskApp extends JFrame {
     public KioskApp() {
         //기본 프레임 설정
         setTitle("Kiosk App");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //종료시 프로세스까지 삭제
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 1200);
 
         //키오스크 패널 생성
